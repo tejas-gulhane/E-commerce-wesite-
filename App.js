@@ -41,10 +41,13 @@ function App() {
       <Route  path="/HomePage" 
       element={<HomePage />}
        />
-        
+        <Route  path="/About" 
+      element={<AboutPage />}
+       />
     
         
       </Routes>
+      <Footer />
     </Fragment>
   );
 }
