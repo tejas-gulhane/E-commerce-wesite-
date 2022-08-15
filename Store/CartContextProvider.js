@@ -11,11 +11,12 @@ const CartContextProvider = (props) => {
       return false;
     });
     if (isThere) {
-      alert("Item is already in the cart");
+      item.quantity += 1;
+      setCartItems((olditems) => [...olditems.filter(el => el.id !== item.id), item]);
+      // alert("Item is already in the cart");
     } else {
-      setCartItems(item);
+      setCartItems((olditems) => [...olditems, item]);
     }
-  
   };
 
   const removeItemFromCartHandler = (itemId) => {

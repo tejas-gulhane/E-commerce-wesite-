@@ -10,6 +10,7 @@ const productsArr = [
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
     quantity: 2,
+    no:0
   },
   {
     id: 'p112',
@@ -17,6 +18,7 @@ const productsArr = [
     price: 50,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
     quantity: 3,
+    no:1
   },
   {
     id: 'p113',
@@ -24,6 +26,7 @@ const productsArr = [
     price: 70,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
     quantity: 1,
+    no:2
   },
   {
     id: 'p114',
@@ -31,6 +34,7 @@ const productsArr = [
     price: 100,
     imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%204.png",
     quantity: 1,
+    no:3
   },
 ];
 
@@ -40,8 +44,8 @@ const Store = (props) => {
   console.log(props);
 
   const addToCartClickHandler = (event) => {
-    const itemId = event.target.id
-    console.log(event);
+    const itemId = event.target.no
+    console.log(event.target);
     cartCtx.addItem(productsArr[itemId]);
   }
 
