@@ -1,8 +1,12 @@
 import { useState, useRef } from 'react';
-
+import { useContext  } from 'react';
+import AuthContext from '../../store/auth-context';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
+
+  const ctx= useContext(AuthContext)
+
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -19,9 +23,38 @@ const AuthForm = () => {
     const enteredPassword = passwordInputRef.current.value;
     setIsLoading(true);
     if (isLogin) {
+      fetch(` https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=
+      AIzaSyDJzFGMehDL_Sv8YBjxCcs1Ox2VjgMBPG4`, {
+        method: 'POST',
+              body: JSON.stringify({
+                email: enteredEmail,
+                password: enteredPassword,
+                returnSecureToken: true,
+              }),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            .then( res =>{
+              console.log(res);
+              setIsLoading(false);
+              if(res.ok){
+                res.json().then((data)=> {
+                  ctx.login(data.idToken)
+                  
+                })
+              }
+              else {
+                return res.json().then((data) => {
+                  if(data.error.message) alert(data.error.message);
+                  else alert('There is an error');
+                })
+              }
+            })
+     
 
     } else {
-      fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=
+      fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=
 AIzaSyDJzFGMehDL_Sv8YBjxCcs1Ox2VjgMBPG4`, {
         method: 'POST',
         body: JSON.stringify({
@@ -40,6 +73,7 @@ AIzaSyDJzFGMehDL_Sv8YBjxCcs1Ox2VjgMBPG4`, {
           return res.json().then(data => {
             const generalError = 'Authentication failed';
             const errmsg = data.error.message;
+            console.log(data);
             if (errmsg) alert(data.error.message)
             else alert(generalError);
           })
