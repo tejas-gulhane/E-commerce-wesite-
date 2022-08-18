@@ -1,8 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import CartContext from "../../Store/Cart-Context";
-import Button from "../../UI/Button";
+import Button from '../../UI/Button';
 import classes from "./Cart.module.css";
-
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const removeProductHandler = (event) => {
@@ -11,8 +10,10 @@ const Cart = (props) => {
   };
 
   const purchaseClickHandler = () => {
+    cartCtx.emptyCart();
     alert("Thank you for shoping with us");
   };
+
   const cartItems = (
     <Fragment>
       <ul className={classes.cartList}>
@@ -42,11 +43,15 @@ const Cart = (props) => {
     </Fragment>
   );
 
+  const cartCloseHandler = () => {
+    cartCtx.closeCart();
+  }
+
   return (
     <div className={classes.cartContainer}>
       <h1>Your Cart</h1>
       <div className={classes.closeBtnDiv}>
-        <Button onClick={props.onClose}>Close</Button>
+        <Button onClick={cartCloseHandler}>Close</Button>
       </div>
       {cartItems}
       <Button onClick={purchaseClickHandler}>Purchase</Button>

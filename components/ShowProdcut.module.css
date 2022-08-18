@@ -16,14 +16,3 @@
     background-color: rgb(131, 131, 206);
     text-align: center;
 }
-.cart {
-    display: flex;
-    position: absolute;
-    right: 5vw;
-    top: 0.5vw;
-}
-
-.cartItemsNum {
-    font-size: 30px;
-    margin-left: 1vw;
-}

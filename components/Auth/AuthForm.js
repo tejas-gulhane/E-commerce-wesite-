@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import { useContext  } from 'react';
-import AuthContext from '../../store/auth-context';
+import AuthContext from '../../Store/auth-context';
 import classes from './AuthForm.module.css';
 import {  useNavigationType } from 'react-router-dom';
 

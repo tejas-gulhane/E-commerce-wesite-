@@ -1,7 +1,18 @@
 .App {
     text-align: center;
   }
+  .welcome {
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+    color: rgb(117, 145, 244);
+  }
   
+  .loggedIn {
+    text-align: center;
+    font-size: 50px;
+    font-weight: Bold;
+  }
   .App-logo {
     height: 40vmin;
     pointer-events: none;

@@ -1,6 +1,6 @@
 import classes from './ProfileForm.module.css';
 import React ,{ useContext ,useRef } from 'react';
-import AuthContext from '../../store/auth-context';
+import AuthContext from '../../Store/auth-context';
 import { useNavigationType } from 'react-router-dom';
 
 const ProfileForm = (props) => {
