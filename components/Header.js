@@ -47,9 +47,7 @@ const Header = (props) => {
               Contact Us
             </NavLink>
           </div>
-          <Link to='/'>
-        <div className={classes.logo}>React Auth</div>
-      </Link>
+
       <nav>
         <ul>
           <li>

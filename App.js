@@ -1,4 +1,4 @@
-import { Route ,Routes } from "react-router-dom";
+import { Navigate ,Route ,Routes } from "react-router-dom";
 
 import { Fragment, useState , Switch ,useContext } from "react";
 import "./App.css";
@@ -52,7 +52,9 @@ function App() {
         <Footer />
       </CartContextProvider>}
        />
-          
+
+       <Route path='/login' element={ !authctx.isLoggedIn && <Navigate to='/login' />} />
+          // {}
       <Route  path="/HomePage" 
       element={<HomePage />}
        />

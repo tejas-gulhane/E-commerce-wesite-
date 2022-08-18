@@ -42,7 +42,7 @@ const Store = (props) => {
 
   const addToCartClickHandler = (event) => {
     const itemId = event.target.id;
-    cartCtx.addItem(productsArr.filter((item) => item.id === itemId)[0]);
+    cartCtx.additem(productsArr.filter((item) => item.id === itemId)[0]);
   };
 
   const cartOpenHandler = () => {
