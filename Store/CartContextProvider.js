@@ -34,11 +34,15 @@ const CartContextProvider = (props) => {
   const closeCartHandler = ()=>{
     setCartIsOpen(false);
   }
+  const loadItemsHandler = (items) => {
+    setCartItems(items);
+  }
   const cartContext = {
     items: cartItems,
     additem: addItemToCartHandler,
     removeitem: removeItemFromCartHandler,
     emptyCart: removeAllFromCartHandler,
+    loadItems: loadItemsHandler,
     openCart: openCartHandler,
     closeCart: closeCartHandler,
     isCartOpen: cartIsopen,

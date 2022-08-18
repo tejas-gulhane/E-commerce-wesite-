@@ -4,6 +4,7 @@ import CartContext from "../Store/Cart-Context";
 import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import Cart from "./Cart/Cart";
+import AuthContext from "../Store/auth-context";
 
 const productsArr = [
   {
@@ -39,15 +40,58 @@ const productsArr = [
 const Store = (props) => {
 
   const cartCtx = useContext(CartContext);
+  const authCtx =useContext(AuthContext)
+
+  const cleanEmail = authCtx.email.replace(/[^a-zA-Z0-9]/g, "");
 
   const addToCartClickHandler = (event) => {
     const itemId = event.target.id;
-    cartCtx.additem(productsArr.filter((item) => item.id === itemId)[0]);
+    const item = productsArr.filter((item) => item.id === itemId)[0]
+    cartCtx.additem(item);
+    postToCrudCrud(item);
   };
 
   const cartOpenHandler = () => {
     cartCtx.openCart();
+    getFromCrudCrud();
+  };
+   
+ 
+
+ 
+
+  const getFromCrudCrud = async () => {
+    const crudURL = `https://crudcrud.com/api/8900cb340d0f40d3bad45362e92163d8/${cleanEmail}`;
+    try {
+      const response = await fetch(crudURL)
+      const data = await response.json();
+      const gotData = data.map(item=>item.items);
+      console.log(gotData);
+      cartCtx.loadItems(gotData);
+      console.log(data);
+
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  const postToCrudCrud = async (item) => {
+    const crudURL = `https://crudcrud.com/api/8900cb340d0f40d3bad45362e92163d8/${cleanEmail}`;
+    try {
+      const response = await fetch(crudURL, {
+        method: "POST",
+        body: JSON.stringify({
+          items: item,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const itemList = productsArr.map((item) => {
     return (
