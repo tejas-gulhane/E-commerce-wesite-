@@ -1,11 +1,12 @@
 import classes from './ProfileForm.module.css';
 import React ,{ useContext ,useRef } from 'react';
 import AuthContext from '../../store/auth-context';
-
+import { useNavigationType } from 'react-router-dom';
 
 const ProfileForm = (props) => {
 
   const ctx = useContext(AuthContext)
+  const Histroy =useNavigationType()
   const passwordInputRef = useRef();
   const idtoken=ctx.token
  const submithandler = (event) =>{
@@ -24,6 +25,7 @@ const ProfileForm = (props) => {
    }).then (res => {
     console.log(res)
     console.log("sucessful");
+    Histroy.replace('/');
    })
  }
 
